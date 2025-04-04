@@ -88,7 +88,7 @@ class DREAMSDataset(Dataset):
         input_batch = cells['input_ids']
         max_len = max(cells["length"])
         input_batch =  pu.pad_tensor_list(
-            input_batch, max_len, self.pad_token_id, self.model_input_size
+            input_batch, int(max_len), self.pad_token_id, self.model_input_size
         )
 
         attn = pu.gen_attention_mask(cells, max_len)
@@ -96,6 +96,4 @@ class DREAMSDataset(Dataset):
 
     def tokenize_drugs(self, smiles):
         return self.drug_tokenizer(smiles, padding=True, return_tensors="pt")
-        #smile_inputs = self.drug_tokenizer(smiles, padding=True, return_tensors="pt")
-        #return smile_inputs['input_ids'], smile_inputs['attention_mask']
 
