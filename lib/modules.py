@@ -147,7 +147,7 @@ class TrainablePerturber(nn.Module):
             attention_mask=x_attn,
         ).hidden_states[self.layer_to_quant]
 
-        x_cls_embs = outputs.mean(axis=-2)
+        x_cls_embs = outputs.mean(axis=0)
 
         # embed shift state
         outputs = self.model(
@@ -155,7 +155,7 @@ class TrainablePerturber(nn.Module):
             attention_mask=y_attn,
         ).hidden_states[self.layer_to_quant]
 
-        y_cls_embs = outputs.mean(axis=-2)
+        y_cls_embs = outputs.mean(axis=0)
 
         return y_cls_embs - x_cls_embs
 
