@@ -3,3 +3,4 @@ git lfs install
 git clone https://huggingface.co/ctheodoris/Geneformer
 cd Geneformer
 pip install .
+pip install transformers==4.49.0
